@@ -22,8 +22,21 @@ ALTER TABLE Tareas DROP COLUMN CategoriasID;
 
 EXEC sp_helpindex 'Tareas';
 
-ALTER TABLE Tareas ADD PRIMARY KEY (Descripcion)
+ALTER TABLE Tareas ADD PRIMARY KEY (Descripcion);
 
 ALTER TABLE Tareas_Completadas ADD CONSTRAINT Descripcion_FK FOREIGN KEY (Descripcion) REFERENCES Tareas (Descripcion);
 
 ALTER TABLE Tareas_Completadas ALTER COLUMN CategoriasID INT ;
+
+ALTER TABLE Categorias ALTER COLUMN Nombre VARCHAR(20) NOT NULL ;
+
+SELECT Nombre FROM Categorias;
+
+INSERT INTO Categorias (Nombre) VALUES ('Urgente'), ('Completado'), ('En Espera')
+
+DELETE FROM Categorias WHERE Nombre = 'NULL';
+
+UPDATE Categorias SET Nombre = NULL WHERE Nombre = ''
+
+UPDATE Categorias SET CategoriasID = NULL
+
